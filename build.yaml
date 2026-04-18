@@ -41,21 +41,27 @@ include:
   #
   # => make sure the `board` field matches the MCU on your keyboard
   ##
----
+
+ # Eyelash Corne + nice!view
   - board: eyelash_corne_left
     shield: nice_view
-    #snippet: zmk-usb-logging    # Uncomment to log over USB.
+    artifact-name: eyelash_corne_left
   - board: eyelash_corne_right
     shield: nice_view
-    #snippet: zmk-usb-logging
+    artifact-name: eyelash_corne_right
   - board: eyelash_corne_left
     shield: nice_view
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
     artifact-name: eyelash_corne_studio_left
+  - board: eyelash_corne_right
+    shield: nice_view
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
+    artifact-name: eyelash_corne_studio_right
   - board: eyelash_corne_left
     shield: settings_reset
-    #snippet: zmk-usb-logging
+    artifact-name: eyelash_corne_settings_reset
  
   # Quacken Zero + SparkFun RP2040
   - board: sparkfun_pro_micro_rp2040//zmk
