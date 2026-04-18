@@ -19,5 +19,8 @@ manifest:
     - name: zmk-config-totem
       remote: cfergeau
       revision: zmk-module
+    - name: zmk-new_corne
+      url: https://github.com/a741725193/zmk-new_corne
+      revision: main
   self:
     path: config
