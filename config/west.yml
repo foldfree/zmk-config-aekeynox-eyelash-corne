@@ -34,6 +34,8 @@ manifest:
       revision: main
     - name: zmk-keyboard-re-gret
       remote: rschenk
+    - name: zmk-new_corne
+      url: https://github.com/a741725193/zmk-new_corne
       revision: main
   self:
     path: config
