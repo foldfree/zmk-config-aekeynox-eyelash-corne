@@ -1,3 +1,4 @@
+#include <dt-bindings/zmk/bt.h>
 // Redefining Selenium for the Eyelash Corne 48-key matrix
 #define SELENIUM_KEYMAP_BINDINGS(LOUT1, LROW1, RROW1, ROUT1, \
                                  LOUT2, LROW2, RROW2, ROUT2, \
