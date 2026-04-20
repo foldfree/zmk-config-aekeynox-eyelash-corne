@@ -71,7 +71,7 @@ include:
     shield: urchin_right nice_view_adapter nice_view_battery
   - board: nice_nano_v2
     shield: settings_reset
- 
+
   # Quacken Zero + SparkFun RP2040
   - board: sparkfun_pro_micro_rp2040//zmk
     shield: quacken_zero
