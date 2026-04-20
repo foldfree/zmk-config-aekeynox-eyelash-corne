@@ -44,18 +44,18 @@ include:
 
  # Eyelash Corne + nice!view
   - board: eyelash_corne_left
-    shield: nice_view_gem
+    shield: nice_view_battery
     artifact-name: eyelash_corne_left
   - board: eyelash_corne_right
-    shield: nice_view_gem
+    shield: nice_view_battery
     artifact-name: eyelash_corne_right
   - board: eyelash_corne_left
-    shield: nice_view_gem
+    shield: nice_view_battery
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
     artifact-name: eyelash_corne_studio_left
   - board: eyelash_corne_right
-    shield: nice_view_gem
+    shield: nice_view_battery
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
     artifact-name: eyelash_corne_studio_right
