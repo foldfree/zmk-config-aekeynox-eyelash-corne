@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/cfergeau
     - name: NuclearSquid
       url-base: https://github.com/Nuclear-Squid
+    - name: m165437
+      url-base: https://github.com/M165437 
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -22,5 +24,8 @@ manifest:
     - name: zmk-new_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
+    - name: nice-view-gem #new entry
+      remote: m165437 #new entry
+      revision: v0.3.0 #new entry
   self:
     path: config
