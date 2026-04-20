@@ -62,6 +62,15 @@ include:
   - board: eyelash_corne_left
     shield: settings_reset
     artifact-name: eyelash_corne_settings_reset
+# Urchin
+  - board: nice_nano_v2
+    shield: urchin_left nice_view_adapter  nice_view_battery
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: nice_nano_v2
+    shield: urchin_right nice_view_adapter nice_view_battery
+  - board: nice_nano_v2
+    shield: settings_reset
  
   # Quacken Zero + SparkFun RP2040
   - board: sparkfun_pro_micro_rp2040//zmk
