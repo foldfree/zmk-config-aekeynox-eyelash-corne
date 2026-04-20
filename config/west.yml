@@ -6,6 +6,7 @@ manifest:
       url-base: https://github.com/cfergeau
     - name: NuclearSquid
       url-base: https://github.com/Nuclear-Squid
+<<<<<<< HEAD
     - name: raeedcho
       url-base: https://github.com/raeedcho
     - name: rloutier
@@ -14,6 +15,10 @@ manifest:
       url-base: https://github.com/rschenk
     - name: m165437
       url-base: https://github.com/M165437
+=======
+    - name: infely                           
+      url-base: https://github.com/infely  
+>>>>>>> 6c237c8 (Update west.yml - nice-view-battery instead)
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -39,8 +44,8 @@ manifest:
     - name: zmk-new_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
-    - name: nice-view-gem #new entry
-      remote: m165437 #new entry
-      revision: v0.3.0 #new entry
+    - name: nice-view-battery                  
+      remote: infely                          
+      revision: main                           
   self:
     path: config
