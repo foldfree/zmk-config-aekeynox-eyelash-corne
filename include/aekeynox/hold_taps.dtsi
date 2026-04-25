@@ -178,7 +178,7 @@
       tapping-term-ms = <TAPPING_TERM>;
       quick-tap-ms = <QUICK_TAP>;
       require-prior-idle-ms = <PRIOR_IDLE_TERM>;
-      flavor = "tap-preferred";
+      flavor = "balanced";
       bindings = <&kp>, <&kp>;
     };
     OMIT_IF_NO_REF sc: space_cadet { // same as lt, but with hold-preferred
