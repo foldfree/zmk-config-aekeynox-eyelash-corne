@@ -62,8 +62,8 @@
 
 // Uncomment one of the following lines to pick your preferred hold-tap config.
 
- #define HT_NONE
-// #define HT_THUMB_TAPS
+// #define HT_NONE
+ #define HT_THUMB_TAPS
 // #define HT_HOME_ROW_MODS  // (default behavior)
 // #define HT_TWO_THUMB_KEYS
 
