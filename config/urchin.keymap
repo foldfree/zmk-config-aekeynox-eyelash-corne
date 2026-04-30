@@ -14,3 +14,18 @@
 #define FOUR_THUMB_KEYS
 
 #include <aekeynox/selenium.keymap>
+/ {
+    combos {
+        compatible = "zmk,combos";
+            bootloader {
+            bindings = <&bootloader>;
+            key-positions = <4 3 20 30>;
+        };
+        bootloader2 {
+            bindings = <&bootloader>;
+            key-positions = <5 6 29 33>;
+        };
+    };
+};
+
+
