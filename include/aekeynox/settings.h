@@ -14,7 +14,7 @@
 // #define KB_LAYOUT_BEPO
 // #define KB_LAYOUT_BEPOLAR
 // #define KB_LAYOUT_DVORAK
-#define KB_LAYOUT_ERGOL
+// #define KB_LAYOUT_ERGOL
 // #define KB_LAYOUT_ERGLACE
 // #define KB_LAYOUT_QWERTY_INTL
 // #define KB_LAYOUT_QWERTY_LAFAYETTE
@@ -62,9 +62,9 @@
 
 // Uncomment one of the following lines to pick your preferred hold-tap config.
 
-// #define HT_NONE
+ #define HT_NONE
 // #define HT_THUMB_TAPS
- #define HT_HOME_ROW_MODS  // (default behavior)
+// #define HT_HOME_ROW_MODS  // (default behavior)
 // #define HT_TWO_THUMB_KEYS
 
 // Timing is key! Keep the default value if unsure.
