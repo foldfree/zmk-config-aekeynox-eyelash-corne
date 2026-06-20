@@ -2,18 +2,6 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: cfergeau
-      url-base: https://github.com/cfergeau
-    - name: NuclearSquid
-      url-base: https://github.com/Nuclear-Squid
-    - name: raeedcho
-      url-base: https://github.com/raeedcho
-    - name: rloutier
-      url-base: https://github.com/rloutier
-    - name: rschenk
-      url-base: https://github.com/rschenk
-    - name: m165437
-      url-base: https://github.com/M165437
     - name: infely
       url-base: https://github.com/infely
     - name: duckyb
@@ -23,20 +11,6 @@ manifest:
       remote: zmkfirmware
       revision: v0.3
       import: app/west.yml
-    - name: zmk-keyboard-quacken
-      remote: cfergeau
-      revision: zmk-main
-    - name: zmk-config-totem
-      remote: cfergeau
-      revision: zmk-module
-    - name: temper-zmk-config
-      remote: raeedcho
-      revision: main
-    - name: zmk-config-go60
-      remote: rloutier
-      revision: main
-    - name: zmk-keyboard-re-gret
-      remote: rschenk
     - name: zmk-new_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
