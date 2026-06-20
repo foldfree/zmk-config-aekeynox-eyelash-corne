@@ -13,7 +13,7 @@ manifest:
       import: app/west.yml
     - name: zmk-new_corne
       url: https://github.com/a741725193/zmk-new_corne
-      revision: main
+      revision: a7d93082b24f5b20e710a5db9b0e3141ade229b3
     - name: nice-view-battery
       remote: infely
       revision: main
