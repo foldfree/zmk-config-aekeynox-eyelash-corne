@@ -2,9 +2,7 @@
 # Supported hardware: https://zmk.dev/docs/hardware
 
 include:
-
-
- # Eyelash Corne + nice!view
+# Eyelash Corne + nice!view
 - board: nice_nano_v2
   shield: eyelash_corne_left nice_view_battery
   artifact-name: eyelash_corne_left
@@ -20,18 +18,18 @@ include:
   shield: settings_reset
   artifact-name: eyelash_corne_settings_reset
 
-  # Urchin
-  - board: nice_nano_v2
-    shield: urchin_left nice_view_adapter nice_view_battery
-    artifact-name: urchin_left
-  - board: nice_nano_v2
-    shield: urchin_left nice_view_adapter nice_view_battery
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
-    artifact-name: urchin_studio_left
-  - board: nice_nano_v2
-    shield: urchin_right nice_view_adapter nice_view_battery
-    artifact-name: urchin_right
-  - board: nice_nano_v2
-    shield: settings_reset
-    artifact-name: urchin_settings_reset
+# Urchin
+- board: nice_nano_v2
+  shield: urchin_left nice_view_adapter nice_view_battery
+  artifact-name: urchin_left
+- board: nice_nano_v2
+  shield: urchin_left nice_view_adapter nice_view_battery
+  snippet: studio-rpc-usb-uart
+  cmake-args: -DCONFIG_ZMK_STUDIO=y
+  artifact-name: urchin_studio_left
+- board: nice_nano_v2
+  shield: urchin_right nice_view_adapter nice_view_battery
+  artifact-name: urchin_right
+- board: nice_nano_v2
+  shield: settings_reset
+  artifact-name: urchin_settings_reset
