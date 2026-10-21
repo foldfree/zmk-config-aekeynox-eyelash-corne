@@ -37,18 +37,21 @@
     mods = <MOD_RSFT>;                                       \
   };
 
-&caps_word {
-  no-default-keys;
-  shift-list = <CAPS_WORD_SHIFT_LIST>;
-  continue-list = <
-    CAPS_WORD_CONTINUE_LIST
-    CAPS_WORD_NUMBERS
-    DELETE
-    BACKSPACE
-  >;
-  mods = <MOD_RSFT>;  // caps-word uses right shift in case we want to
-                      // differentiate it from regular shift
-};
+// Caps-word customization requires newer ZMK (0.4+) — the no-default-keys,
+// shift-list and continue-list properties don't exist in v0.3. Uncomment when
+// building against ZMK main/v0.4.
+// &caps_word {
+//   no-default-keys;
+//   shift-list = <CAPS_WORD_SHIFT_LIST>;
+//   continue-list = <
+//     CAPS_WORD_CONTINUE_LIST
+//     CAPS_WORD_NUMBERS
+//     DELETE
+//     BACKSPACE
+//   >;
+//   mods = <MOD_RSFT>;  // caps-word uses right shift in case we want to
+//                       // differentiate it from regular shift
+// };
 
 / {
   behaviors {

@@ -204,7 +204,8 @@
       #binding-cells = <2>;
       tapping-term-ms = <TAPPING_TERM>;
       quick-tap-ms = <QUICK_TAP>;
-      flavor = "tap-preferred";
+      require-prior-idle-ms = <PRIOR_IDLE_TERM>;
+      flavor = "balanced";
       bindings = <&kp>, <&kp>;
     };
     OMIT_IF_NO_REF sc: space_cadet { // same as lt, but with hold-preferred

@@ -20,8 +20,6 @@
 #include "mappings.dtsi"  // key mapping helpers and macros
 #include "hold_taps.dtsi" // defines thumb keys and homerow mods
 #include "outer_keys.h"   // defines outer keys on the 6th columns
-
-
 /**
  * All keyboard layers are defined by blocks on a 42-key basis, as follows:
  *
@@ -134,10 +132,10 @@
     fn_media_layer: fn_media_layer {
       display-name = "FnMedia";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  &kp F1  &kp F2  &kp F3  &kp F4  &none   ,   &bt BT_SEL 2  &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &kp SLCK    ,  &trans ,
-        &trans  ,  &kp F5  &kp F6  &kp F7  &kp F8  &none   ,   &bt_sel1_clr  &UH1 C_PP   &UH2 C_MUTE   &UH3 C_AL_LOCK &UH4 PSCRN  ,  &trans ,
-        &trans  ,  &kp F9  &kp F10 &kp F11 &kp F12 &none   ,   &bt BT_SEL 0  &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &kp INS     ,  &trans ,
-                           &trans , &bootloader , &trans   ,   &trans , &sys_reset , &studio_unlock
+        &trans  ,  &kp F1  &kp F2  &kp F3  &kp F4  &none   ,   &bt BT_NXT &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &kp SLCK      ,  &trans ,
+        &trans  ,  &kp F5  &kp F6  &kp F7  &kp F8  &none   ,   &none      &kp C_PP    &kp C_MUTE    &kp C_AL_LOCK  &kp PSCRN     ,  &trans ,
+        &trans  ,  &kp F9  &kp F10 &kp F11 &kp F12 &none   ,   &bt BT_CLR &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &kp INS       ,  &trans ,
+                           &trans , &bootloader , &trans   ,   &trans , &trans , &trans
       )>;
     };
 

@@ -12,74 +12,56 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: cfergeau
-      url-base: https://github.com/cfergeau
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: NuclearSquid
       url-base: https://github.com/Nuclear-Squid
-    - name: rloutier
-      url-base: https://github.com/rloutier
-    - name: rschenk
-      url-base: https://github.com/rschenk
-
+    - name: infely
+      url-base: https://github.com/infely
   projects:
-      # We rely on a fork of ZMK for a couple of reasons:
-      # 1. to pin the version of ZMK, so we’re not caught off guard by breaking changes
-      # 2. to add some more advanced features that aren’t present upstream
-      #    (unmerged PRs, custom patches…)
-      # More info on the changes present can be found on the fork’s README page.
+    # ZMK fork used by eyelash_corne upstream
     - name: zmk
-      remote: NuclearSquid
-      revision: aekeynox
+      remote: cormoran
+      revision: v0.3-branch+dya
       import: app/west.yml
 
       ###
-      # Custom behaviors
+      # Eyelash Corne dependencies
       ##
+    - name: zmk-behavior-runtime-sensor-rotate
+      remote: cormoran
+      revision: main
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: zmk-v0.3.0.0
+    - name: zmk-module-battery-history
+      remote: cormoran
+      revision: main
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: zmk-v0.3.0.0
 
-      # Safely wraps a dead key on the host layout
+    ###
+    # Custom behaviors (from aekeynox stack — may need adjustments)
+    ##
     - name: zmk-behavior-dead-key
       remote: NuclearSquid
       revision: aekeynox
-
-      # Wraps a behavior to hold a selection of active modifiers for as long
-      # as that key is held
     - name: zmk-behavior-mod-hold
       remote: NuclearSquid
       revision: aekeynox
 
-      ###
-      # Community keyboards (not officially supported by ZMK)
-      ##
-
-      # Quacken Flex: unibody rp2040-based board
-      # Quacken Zero: unibody ProMicro-compatible shield
-    - name: zmk-keyboard-quacken
-      remote: NuclearSquid
-      revision: aekeynox
-
-      # Totem: split XIAO-compatible shield
-      # A fork of `GEIGEIGEIST`'s ZMK Totem module, to migrate it to ZMK main
-    - name: zmk-config-totem
-      remote: cfergeau
-      revision: 9677c2fd5af7cee784aafb1b52a25a33357336c2
-
-      # Temper/Chocofi: split ProMicro-compatible shield
-      # A fork of `raeedcho`'s ZMK Temper module including long-standing patch proposals.
-      # https://github.com/OneDeadKey/zmk-config-aekeynox/pull/101
-    - name: temper-zmk-config
-      remote: NuclearSquid
-      revision: aekeynox
-
-      # Go60: split nrf52840-based board
-      # A fork of MoErgo's ZMK go60 module, to migrate it to ZMK main
-    - name: zmk-config-go60
-      remote: rloutier
-      revision: 1bb1f847162f5ccec162c5ba6516d0c73b6a8c39
-
-      # Re-gret: unibody XIAO-compatible shield, 34 keys
-    - name: zmk-keyboard-re-gret
-      remote: rschenk
-      revision: 34ca1fc7dc6991475b0c20f2c8361598e7aaeaca
-
+    ###
+    # Eyelash Corne
+    ##
+    - name: zmk-new_corne
+      url: https://github.com/a741725193/zmk-new_corne
+      revision: main
+    - name: nice-view-battery
+      remote: infely
+      revision: main
   self:
     path: config
