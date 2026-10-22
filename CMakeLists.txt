@@ -1,1 +1,3 @@
-target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ app PRIVATE src/behavior_caps_word_az.c)
+if ((NOT CONFIG_ZMK_SPLIT) OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+  target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ app PRIVATE src/behavior_caps_word_az.c)
+endif()
