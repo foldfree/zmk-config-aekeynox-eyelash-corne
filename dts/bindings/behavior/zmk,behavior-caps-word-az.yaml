@@ -1,0 +1,19 @@
+# Caps word behavior with configurable shift-list, backported for ZMK v0.3 forks
+# SPDX-License-Identifier: MIT
+
+description: Caps word behavior with configurable shifted keys
+
+compatible: "zmk,behavior-caps-word-az"
+
+include: zero_param.yaml
+
+properties:
+  shift-list:
+    type: array
+    required: true
+  continue-list:
+    type: array
+  mods:
+    type: int
+  no-default-keys:
+    type: boolean

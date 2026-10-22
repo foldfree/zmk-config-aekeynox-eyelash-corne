@@ -37,7 +37,13 @@
     mods = <MOD_RSFT>;                                       \
   };
 
-&caps_word {
+// Caps word with configurable shifted keys. Needed because the pinned ZMK
+// fork (cormoran v0.3-branch+dya) lacks the caps-word rework: its caps_word
+// only shifts real A-Z usages, which breaks AZERTY-style layouts where e.g.
+// U is sent from the SEMI position.
+OMIT_IF_NO_REF caps_word_az: caps_word_az {
+  compatible = "zmk,behavior-caps-word-az";
+  #binding-cells = <0>;
   no-default-keys;
   shift-list = <CAPS_WORD_SHIFT_LIST>;
   continue-list = <
