@@ -19,10 +19,10 @@ manifest:
     - name: infely
       url-base: https://github.com/infely
   projects:
-    # ZMK fork used by eyelash_corne upstream
+    # ZMK fork with the caps-word rework (shift-list, no-default-keys)
     - name: zmk
-      remote: cormoran
-      revision: v0.3-branch+dya
+      remote: NuclearSquid
+      revision: aekeynox
       import: app/west.yml
 
       ###
