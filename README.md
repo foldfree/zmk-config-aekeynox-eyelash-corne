@@ -1,3 +1,8 @@
+# Eyelash Corne
+This fork add support for the Eyelash Corne from Taobao.
+
+Make sure to check the settings before applying the firmware.
+
 Ækeynox-ZMK
 ====================================================================================================
 
