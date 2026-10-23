@@ -1,9 +1,13 @@
 /*
- * Caps word behavior with configurable shift-list and no-default-keys,
- * for use with ZMK v0.3-based forks that lack the caps-word rework
- * (mirrors the semantics of the newer zmk,behavior-caps-word).
+ * Caps word behavior with configurable shift-list and no-default-keys.
+ * Backported for ZMK v0.3 forks that lack the caps-word rework.
  *
- * SPDX-License-Identifier: MIT
+ * Logic:
+ * 1. If key is in shift-list -> Apply mods (shift).
+ * 2. If no-default-keys is set:
+ *    - Only keys in shift-list or continue-list are allowed.
+ * 3. If no-default-keys is NOT set:
+ *    - Default A-Z and 0-9 are allowed (standard caps word).
  */
 
 #define DT_DRV_COMPAT zmk_behavior_caps_word_az
@@ -21,29 +25,7 @@
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
-#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW)
-#include <zmk/rgb_underglow.h>
-// TEMPORARY DEBUG SIGNALS via underglow color:
-//   red    = caps_word_az activated
-//   yellow = a keystroke was enhanced (shift-list hit)
-//   cyan   = deactivated
-static void debug_led(uint16_t h, uint8_t s, uint8_t b) {
-    zmk_rgb_underglow_select_effect(0); /* solid */
-    zmk_rgb_underglow_on();
-    zmk_rgb_underglow_set_hsb((struct zmk_led_hsb){.h = h, .s = s, .b = b});
-}
-#define DBG_LED_ACTIVATE() debug_led(0, 100, 100)
-#define DBG_LED_ENHANCE() debug_led(60, 100, 100)
-#define DBG_LED_DEACTIVATE() debug_led(180, 100, 100)
-#define DBG_LED_LISTENER() debug_led(120, 100, 100) /* green: listener saw an event */
-#define DBG_LED_ACTIVEDEV() debug_led(240, 100, 100) /* blue: looping over an active device */
-#else
-#define DBG_LED_ACTIVATE()
-#define DBG_LED_ENHANCE()
-#define DBG_LED_DEACTIVATE()
-#endif
-
-LOG_MODULE_REGISTER(caps_word_az, CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ_LOG_LEVEL);
+LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
@@ -73,13 +55,11 @@ struct behavior_caps_word_az_data {
 
 static void activate_caps_word_az(const struct device *dev) {
     struct behavior_caps_word_az_data *data = dev->data;
-
     data->active = true;
 }
 
 static void deactivate_caps_word_az(const struct device *dev) {
     struct behavior_caps_word_az_data *data = dev->data;
-
     data->active = false;
 }
 
@@ -89,12 +69,8 @@ static int on_caps_word_az_binding_pressed(struct zmk_behavior_binding *binding,
     struct behavior_caps_word_az_data *data = dev->data;
 
     if (data->active) {
-        LOG_DBG("caps_word_az: deactivating");
-        DBG_LED_DEACTIVATE();
         deactivate_caps_word_az(dev);
     } else {
-        LOG_DBG("caps_word_az: activating");
-        DBG_LED_ACTIVATE();
         activate_caps_word_az(dev);
     }
 
@@ -102,7 +78,7 @@ static int on_caps_word_az_binding_pressed(struct zmk_behavior_binding *binding,
 }
 
 static int on_caps_word_az_binding_released(struct zmk_behavior_binding *binding,
-                                            struct zmk_behavior_binding_event event) {
+                                             struct zmk_behavior_binding_event event) {
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -111,7 +87,7 @@ static const struct behavior_driver_api behavior_caps_word_az_driver_api = {
     .binding_released = on_caps_word_az_binding_released,
 #if IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
     .get_parameter_metadata = zmk_behavior_get_empty_param_metadata,
-#endif // IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
+#endif
 };
 
 static int caps_word_az_keycode_state_changed_listener(const zmk_event_t *eh);
@@ -126,11 +102,9 @@ static bool caps_word_az_in_shiftlist(const struct behavior_caps_word_az_config 
                                       uint16_t usage_page, uint32_t usage_id) {
     for (int i = 0; i < config->shifts_count; i++) {
         if (config->shifts[i].page == usage_page && config->shifts[i].id == usage_id) {
-            LOG_DBG("Found shifted usage: 0x%02X - 0x%02X", usage_page, usage_id);
             return true;
         }
     }
-
     return false;
 }
 
@@ -138,18 +112,13 @@ static bool caps_word_az_in_continuelist(const struct behavior_caps_word_az_conf
                                          uint16_t usage_page, uint32_t usage_id,
                                          uint8_t implicit_modifiers) {
     for (int i = 0; i < config->continuations_count; i++) {
-        const struct caps_word_az_continue_item *continuation = &config->continuations[i];
-
-        if (continuation->page == usage_page && continuation->id == usage_id &&
-            (continuation->implicit_modifiers &
-             (implicit_modifiers | zmk_hid_get_explicit_mods())) ==
-                continuation->implicit_modifiers) {
-            LOG_DBG("Continuing capsword, found included usage: 0x%02X - 0x%02X", usage_page,
-                    usage_id);
+        const struct caps_word_az_continue_item *cont = &config->continuations[i];
+        if (cont->page == usage_page && cont->id == usage_id &&
+            (cont->implicit_modifiers & (implicit_modifiers | zmk_hid_get_explicit_mods())) ==
+                cont->implicit_modifiers) {
             return true;
         }
     }
-
     return false;
 }
 
@@ -168,37 +137,37 @@ static int caps_word_az_keycode_state_changed_listener(const zmk_event_t *eh) {
         return ZMK_EV_EVENT_BUBBLE;
     }
 
-    DBG_LED_LISTENER();
-
     for (int i = 0; i < ARRAY_SIZE(devs); i++) {
         const struct device *dev = devs[i];
-
         struct behavior_caps_word_az_data *data = dev->data;
         if (!data->active) {
             continue;
         }
 
-        DBG_LED_ACTIVEDEV();
-
         const struct behavior_caps_word_az_config *config = dev->config;
+        bool in_shift = caps_word_az_in_shiftlist(config, ev->usage_page, ev->keycode);
 
-        bool in_shift_list = caps_word_az_in_shiftlist(config, ev->usage_page, ev->keycode);
-        if (in_shift_list) {
-            LOG_DBG("Enhancing usage 0x%02X with modifiers: 0x%02X", ev->keycode, config->mods);
-            DBG_LED_ENHANCE();
+        // 1. Handle Shift List
+        if (in_shift) {
             ev->implicit_modifiers |= config->mods;
         }
 
-        bool allowed = in_shift_list ||
+        // 2. Determine if allowed
+        bool allowed = in_shift ||
                        caps_word_az_in_continuelist(config, ev->usage_page, ev->keycode,
                                                     ev->implicit_modifiers) ||
-                       is_mod(ev->usage_page, ev->keycode) ||
-                       (!config->no_default_keys && (caps_word_az_is_alpha(ev->keycode) ||
-                                                     caps_word_az_is_numeric(ev->keycode)));
+                       is_mod(ev->usage_page, ev->keycode);
 
         if (!allowed) {
-            LOG_DBG("Deactivating caps_word_az for 0x%02X - 0x%02X", ev->usage_page, ev->keycode);
-            deactivate_caps_word_az(dev);
+            // If no-default-keys is set, only shift/continue/mods are allowed.
+            // If no-default-keys is NOT set, alpha/numeric are also allowed.
+            if (config->no_default_keys) {
+                deactivate_caps_word_az(dev);
+            } else {
+                if (!caps_word_az_is_alpha(ev->keycode) && !caps_word_az_is_numeric(ev->keycode)) {
+                    deactivate_caps_word_az(dev);
+                }
+            }
         }
     }
 
