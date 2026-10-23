@@ -21,6 +21,25 @@
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
+#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW)
+#include <zmk/rgb_underglow.h>
+// TEMPORARY DEBUG SIGNALS via underglow color:
+//   red    = caps_word_az activated
+//   yellow = a keystroke was enhanced (shift-list hit)
+//   cyan   = deactivated
+static void debug_led(uint16_t h, uint8_t s, uint8_t b) {
+    zmk_rgb_underglow_on();
+    zmk_rgb_underglow_set_hsb((struct zmk_led_hsb){.h = h, .s = s, .b = b});
+}
+#define DBG_LED_ACTIVATE() debug_led(0, 100, 100)
+#define DBG_LED_ENHANCE() debug_led(60, 100, 100)
+#define DBG_LED_DEACTIVATE() debug_led(180, 100, 100)
+#else
+#define DBG_LED_ACTIVATE()
+#define DBG_LED_ENHANCE()
+#define DBG_LED_DEACTIVATE()
+#endif
+
 LOG_MODULE_REGISTER(caps_word_az, CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
@@ -68,9 +87,11 @@ static int on_caps_word_az_binding_pressed(struct zmk_behavior_binding *binding,
 
     if (data->active) {
         LOG_DBG("caps_word_az: deactivating");
+        DBG_LED_DEACTIVATE();
         deactivate_caps_word_az(dev);
     } else {
         LOG_DBG("caps_word_az: activating");
+        DBG_LED_ACTIVATE();
         activate_caps_word_az(dev);
     }
 
@@ -157,6 +178,7 @@ static int caps_word_az_keycode_state_changed_listener(const zmk_event_t *eh) {
         bool in_shift_list = caps_word_az_in_shiftlist(config, ev->usage_page, ev->keycode);
         if (in_shift_list) {
             LOG_DBG("Enhancing usage 0x%02X with modifiers: 0x%02X", ev->keycode, config->mods);
+            DBG_LED_ENHANCE();
             ev->implicit_modifiers |= config->mods;
         }
 
