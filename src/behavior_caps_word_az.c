@@ -35,6 +35,7 @@ static void debug_led(uint16_t h, uint8_t s, uint8_t b) {
 #define DBG_LED_ACTIVATE() debug_led(0, 100, 100)
 #define DBG_LED_ENHANCE() debug_led(60, 100, 100)
 #define DBG_LED_DEACTIVATE() debug_led(180, 100, 100)
+#define DBG_LED_LISTENER() debug_led(120, 100, 100) /* green: listener saw an event */
 #else
 #define DBG_LED_ACTIVATE()
 #define DBG_LED_ENHANCE()
@@ -165,6 +166,8 @@ static int caps_word_az_keycode_state_changed_listener(const zmk_event_t *eh) {
     if (ev == NULL || !ev->state) {
         return ZMK_EV_EVENT_BUBBLE;
     }
+
+    DBG_LED_LISTENER();
 
     for (int i = 0; i < ARRAY_SIZE(devs); i++) {
         const struct device *dev = devs[i];
