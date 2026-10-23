@@ -10,26 +10,31 @@ include:
 # resolves to the base Zephyr board, whose defconfig sets no ZMK symbols
 # (that's what broke the previous run: ZMK_SPLIT_BLE=n).
 # Revision 2.0.0 == the old nice_nano_v2 (nRF52840).
+# Phase 2 — nice!view display with the stock built-in status screen.
+# The adapter shield translates nice_view's EPD driver node onto the
+# pro_micro SPI pins; eyelash_corne provides the &nice_view_spi label.
 - board: nice_nano//zmk
   board_revision: 2.0.0
-  shield: eyelash_corne_left
+  shield: eyelash_corne_left nice_view_adapter nice_view
   artifact-name: eyelash_corne_left
 - board: nice_nano//zmk
   board_revision: 2.0.0
-  shield: eyelash_corne_right
+  shield: eyelash_corne_right nice_view_adapter nice_view
   artifact-name: eyelash_corne_right
 - board: nice_nano//zmk
   board_revision: 2.0.0
   shield: settings_reset
   artifact-name: eyelash_corne_settings_reset
 
-# Phase 2 — re-enable once the nice!view display stack is ported. Note that
-# mainline ZMK requires the nice_view_generic adapter alongside nice_view.
+# Phase-1 fallback builds without displays, kept for bisecting display issues.
 # - board: nice_nano//zmk
 #   board_revision: 2.0.0
-#   shield: eyelash_corne_right nice_view nice_view_generic
-#   artifact-name: eyelash_corne_right
+#   shield: eyelash_corne_left
+#   artifact-name: eyelash_corne_left_plain
 # - board: nice_nano//zmk
 #   board_revision: 2.0.0
-#   shield: eyelash_corne_left nice_view nice_view_generic
-#   artifact-name: eyelash_corne_left
+#   shield: eyelash_corne_right
+#   artifact-name: eyelash_corne_right_plain
+#
+# Custom status screens (nice-view-gem / nice-view-battery style) can be
+# layered on later as a module once the built-in screen is verified working.
