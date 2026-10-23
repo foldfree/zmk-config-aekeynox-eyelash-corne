@@ -181,3 +181,19 @@ include:
   - board: nice_nano@2//zmk
     shield: settings_reset
     artifact-name: nice_nano_v2_settings_reset
+
+  ###
+  # Eyelash Corne
+  #
+  # Vendored split shield (nice!view capable) on nice!nano v2 MCUs.
+  ##
+
+    # Left half, nice!view display
+  - board: nice_nano@2//zmk
+    shield: eyelash_corne_left nice_view_adapter nice_view
+    artifact-name: eyelash_corne_left
+
+    # Right half, nice!view display
+  - board: nice_nano@2//zmk
+    shield: eyelash_corne_right nice_view_adapter nice_view
+    artifact-name: eyelash_corne_right
