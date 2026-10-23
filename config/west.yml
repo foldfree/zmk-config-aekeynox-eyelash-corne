@@ -20,6 +20,8 @@ manifest:
       url-base: https://github.com/rloutier
     - name: rschenk
       url-base: https://github.com/rschenk
+    - name: m165437
+      url-base: https://github.com/M165437
 
   projects:
       # We rely on a fork of ZMK for a couple of reasons:
@@ -80,6 +82,12 @@ manifest:
     - name: zmk-keyboard-re-gret
       remote: rschenk
       revision: 34ca1fc7dc6991475b0c20f2c8361598e7aaeaca
+
+    # nice!view alternative status screen (Teenage Engineering inspired,
+    # with WPM chart and peripheral animation)
+    - name: nice-view-gem
+      remote: m165437
+      revision: 0a50fe209d929c916c5664c6affd0f4977c6b012
 
   self:
     path: config

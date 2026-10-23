@@ -190,10 +190,10 @@ include:
 
     # Left half, nice!view display
   - board: nice_nano@2//zmk
-    shield: eyelash_corne_left nice_view_adapter nice_view
+    shield: eyelash_corne_left nice_view_adapter nice_view_gem
     artifact-name: eyelash_corne_left
 
     # Right half, nice!view display
   - board: nice_nano@2//zmk
-    shield: eyelash_corne_right nice_view_adapter nice_view
+    shield: eyelash_corne_right nice_view_adapter nice_view_gem
     artifact-name: eyelash_corne_right
