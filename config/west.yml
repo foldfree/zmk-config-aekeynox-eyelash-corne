@@ -34,14 +34,10 @@ manifest:
       remote: NuclearSquid
       revision: aekeynox
 
-    ###
-    # Eyelash Corne
-    ##
-    - name: zmk-new_corne
-      url: https://github.com/a741725193/zmk-new_corne
-      revision: main
-    # NOTE: nice-view-battery is temporarily removed: it targets the cormoran
-    # fork's display/widget API. Re-add (remote: infely, revision: main) when
-    # porting the nice!view display stack.
+    # NOTE: the eyelash_corne shield is vendored locally under
+    # config/boards/shields/eyelash_corne (from a741725193/zmk-new_corne,
+    # stripped of cormoran-fork-only modules). nice-view-battery is also
+    # temporarily removed: it targets the cormoran fork's display/widget API.
+    # Re-add it when porting the nice!view display stack.
   self:
     path: config
