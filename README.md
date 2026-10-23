@@ -125,6 +125,14 @@ The result is much easier to use than any full-size European or Latin American l
 - [Proposed 1dk adaptations]
 
 
+Custom Behaviors
+----------------------------------------------------------------------------------------------------
+
+- [`caps_word_az`](docs/caps-word-az.md) — caps word with configurable shift-list,
+  backported for the pinned ZMK v0.3 fork. Fixes caps word on layouts where letters
+  come from non-A–Z physical positions (e.g. AZERTY `U` on `SEMI`).
+
+
 Why the name?
 ----------------------------------------------------------------------------------------------------
 
