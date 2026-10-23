@@ -1,3 +1,8 @@
 config ZMK_BEHAVIOR_CAPS_WORD_AZ
 	bool "Enables the caps-word-az behavior (caps word with shift-list)"
 	default y
+
+config ZMK_BEHAVIOR_CAPS_WORD_AZ_LOG_LEVEL
+	int "Log level for caps-word-az"
+	default 4
+	depends on LOG

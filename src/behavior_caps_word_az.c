@@ -21,7 +21,7 @@
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
-LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
+LOG_MODULE_REGISTER(caps_word_az, CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
@@ -67,8 +67,10 @@ static int on_caps_word_az_binding_pressed(struct zmk_behavior_binding *binding,
     struct behavior_caps_word_az_data *data = dev->data;
 
     if (data->active) {
+        LOG_DBG("caps_word_az: deactivating");
         deactivate_caps_word_az(dev);
     } else {
+        LOG_DBG("caps_word_az: activating");
         activate_caps_word_az(dev);
     }
 
