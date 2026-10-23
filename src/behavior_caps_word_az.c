@@ -174,11 +174,11 @@ static int caps_word_az_keycode_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
 }
 
-#define SHIFT_ITEM(i, n) {.page = ZMK_HID_USAGE_PAGE(i), .id = ZMK_HID_USAGE_ID(i)}
+#define SHIFT_ITEM(i, n) {.page = ZMK_HID_USAGE_PAGE(DT_INST_PROP_BY_IDX(n, shift_list, i)), .id = ZMK_HID_USAGE_ID(DT_INST_PROP_BY_IDX(n, shift_list, i))}
 
 #define CONTINUE_ITEM(i, n)                                                                        \
-    {.page = ZMK_HID_USAGE_PAGE(i), .id = ZMK_HID_USAGE_ID(i),                                     \
-     .implicit_modifiers = SELECT_MODS(i)}
+    {.page = ZMK_HID_USAGE_PAGE(DT_INST_PROP_BY_IDX(n, continue_list, i)), .id = ZMK_HID_USAGE_ID(DT_INST_PROP_BY_IDX(n, continue_list, i)),                                     \
+     .implicit_modifiers = SELECT_MODS(DT_INST_PROP_BY_IDX(n, continue_list, i))}
 
 #define KP_INST(n)                                                                                 \
     static struct behavior_caps_word_az_data behavior_caps_word_az_data_##n = {.active = false};  \
