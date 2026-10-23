@@ -1,3 +1,5 @@
-if ((NOT CONFIG_ZMK_SPLIT) OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-  target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_CAPS_WORD_AZ app PRIVATE src/behavior_caps_word_az.c)
-endif()
+# Intentionally empty: custom behaviors live in external ZMK modules
+# (zmk-behavior-dead-key, zmk-behavior-mod-hold). The former
+# caps-word-az behavior was replaced by the native &caps_word node
+# (shift-list / continue-list / no-default-keys) from the
+# Nuclear-Squid/aekeynox ZMK fork.

@@ -128,9 +128,12 @@ The result is much easier to use than any full-size European or Latin American l
 Custom Behaviors
 ----------------------------------------------------------------------------------------------------
 
-- [`caps_word_az`](docs/caps-word-az.md) — caps word with configurable shift-list,
-  backported for the pinned ZMK v0.3 fork. Fixes caps word on layouts where letters
-  come from non-A–Z physical positions (e.g. AZERTY `U` on `SEMI`).
+The custom `caps_word_az` behavior was removed: the ZMK core is now the
+[Nuclear-Squid/aekeynox](https://github.com/Nuclear-Squid/zmk) fork, whose native
+`&caps_word` provides `shift-list`, `continue-list` and `no-default-keys` — the same
+semantics, configured in [`include/aekeynox/mappings.dtsi`](include/aekeynox/mappings.dtsi).
+It fixes caps word on layouts where letters come from non-A–Z physical positions
+(e.g. AZERTY `U` on `SEMI`).
 
 
 Why the name?

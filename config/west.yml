@@ -12,37 +12,17 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: cormoran
-      url-base: https://github.com/cormoran
     - name: NuclearSquid
       url-base: https://github.com/Nuclear-Squid
     - name: infely
       url-base: https://github.com/infely
   projects:
-    # ZMK fork used by eyelash_corne upstream
+    # ZMK fork used by eyelash_corne upstream: stock mainline ZMK + enhanced
+    # caps-word, matrix transform redirection table, static const behavior configs
     - name: zmk
-      remote: cormoran
-      revision: v0.3-branch+dya
+      remote: NuclearSquid
+      revision: aekeynox
       import: app/west.yml
-
-      ###
-      # Eyelash Corne dependencies
-      ##
-    - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
-      revision: main
-    - name: zmk-module-ble-management
-      remote: cormoran
-      revision: zmk-v0.3.0.0
-    - name: zmk-module-battery-history
-      remote: cormoran
-      revision: main
-    - name: zmk-module-settings-rpc
-      remote: cormoran
-      revision: main
-    - name: zmk-module-runtime-input-processor
-      remote: cormoran
-      revision: zmk-v0.3.0.0
 
     ###
     # Custom behaviors (from aekeynox stack — may need adjustments)
@@ -60,8 +40,8 @@ manifest:
     - name: zmk-new_corne
       url: https://github.com/a741725193/zmk-new_corne
       revision: main
-    - name: nice-view-battery
-      remote: infely
-      revision: main
+    # NOTE: nice-view-battery is temporarily removed: it targets the cormoran
+    # fork's display/widget API. Re-add (remote: infely, revision: main) when
+    # porting the nice!view display stack.
   self:
     path: config
