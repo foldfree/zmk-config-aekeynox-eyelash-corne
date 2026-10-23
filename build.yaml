@@ -5,30 +5,31 @@ include:
 
 # Phase 1 of the Nuclear-Squid/aekeynox ZMK port: plain builds without the
 # nice!view display stack, to validate the shield port in isolation.
-# NOTE: plain `nice_nano` resolves to the base Zephyr board, whose defconfig
-# sets no ZMK symbols (that's what broke the previous run: ZMK_SPLIT_BLE=n).
-# ZMK's HWM variant is `nice_nano_nrf52840_zmk`; revision 2.0.0 == the old
-# nice_nano_v2 (nRF52840).
-- board: nice_nano_nrf52840_zmk
+# NOTE: the board's HWM id is literally `nice_nano//zmk` (empty SoC-qualifier
+# slot in the middle; compare `nrfmicro/nrf52840/zmk`). Plain `nice_nano`
+# resolves to the base Zephyr board, whose defconfig sets no ZMK symbols
+# (that's what broke the previous run: ZMK_SPLIT_BLE=n).
+# Revision 2.0.0 == the old nice_nano_v2 (nRF52840).
+- board: nice_nano//zmk
   board_revision: 2.0.0
   shield: eyelash_corne_left
   artifact-name: eyelash_corne_left
-- board: nice_nano_nrf52840_zmk
+- board: nice_nano//zmk
   board_revision: 2.0.0
   shield: eyelash_corne_right
   artifact-name: eyelash_corne_right
-- board: nice_nano_nrf52840_zmk
+- board: nice_nano//zmk
   board_revision: 2.0.0
   shield: settings_reset
   artifact-name: eyelash_corne_settings_reset
 
 # Phase 2 — re-enable once the nice!view display stack is ported. Note that
 # mainline ZMK requires the nice_view_generic adapter alongside nice_view.
-# - board: nice_nano_nrf52840_zmk
+# - board: nice_nano//zmk
 #   board_revision: 2.0.0
 #   shield: eyelash_corne_right nice_view nice_view_generic
 #   artifact-name: eyelash_corne_right
-# - board: nice_nano_nrf52840_zmk
+# - board: nice_nano//zmk
 #   board_revision: 2.0.0
 #   shield: eyelash_corne_left nice_view nice_view_generic
 #   artifact-name: eyelash_corne_left
