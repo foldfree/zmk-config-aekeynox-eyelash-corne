@@ -261,7 +261,7 @@
     OMIT_IF_NO_REF unshift_caps: unshift_caps {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      bindings = <&macro_tap &kp K_CANCEL>, <&caps_word_az>;
+      bindings = <&macro_tap &kp K_CANCEL>, <&caps_word>;
     };
 
     // mod-morphs to restore Shift+Space and Ctrl+Backspace for certain keymaps
