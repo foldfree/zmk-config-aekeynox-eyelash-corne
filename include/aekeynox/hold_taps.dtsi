@@ -170,11 +170,10 @@
   #define VIM_LTHUMB_TUCK  &mt LSHIFT CAPSLOCK
   #define NAV_RTHUMB_TUCK  &EZ_LSK(RALT)
 #else
-  // FIX for cormoran v0.3 fork: &mt fails to resolve its tap action when pressed
-  // while a layer is held by another hold-tap (sc/lt). Use a direct &kp CAPS to
-  // restore "hold NavNum + tap shift = Caps Lock". Upstream uses
-  // &mt LSHIFT CAPSLOCK, which relies on newer ZMK hold-tap logic.
-  #define NAV_LTHUMB_TUCK  &kp CAPSLOCK
+  // Restore upstream behavior: &mt LSHIFT CAPSLOCK
+  // Tap = Caps Lock, Hold = Shift
+  // This replaces the &kp CAPSLOCK workaround which was inconsistent on older ZMK forks.
+  #define NAV_LTHUMB_TUCK  &mt LSHIFT CAPSLOCK
   #define VIM_LTHUMB_TUCK  NAV_LTHUMB_TUCK
   #define NAV_RTHUMB_TUCK  &EZ_LSK(RALT)
 #endif
