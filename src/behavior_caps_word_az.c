@@ -28,6 +28,7 @@
 //   yellow = a keystroke was enhanced (shift-list hit)
 //   cyan   = deactivated
 static void debug_led(uint16_t h, uint8_t s, uint8_t b) {
+    zmk_rgb_underglow_select_effect(0); /* solid */
     zmk_rgb_underglow_on();
     zmk_rgb_underglow_set_hsb((struct zmk_led_hsb){.h = h, .s = s, .b = b});
 }
